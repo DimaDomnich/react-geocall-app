@@ -24,10 +24,11 @@ export const getAccessToLocalStream = async () => {
 };
 
 export const connectWithPeerServer = () => {
+  console.log("connect called");
   peer = new Peer(undefined, {
     host: "https://react-geocall-app-server.onrender.com",
     port: 9000,
-    path: "/peer",
+    path: "/peerjs/peer",
   });
 
   peer.on("open", (id) => {

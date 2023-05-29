@@ -3,7 +3,7 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
-const { PeerServer } = require("peer");
+const { ExpressPeerServer } = require("peer");
 
 const server = http.createServer(app);
 
@@ -46,10 +46,12 @@ io.on("connection", (socket) => {
   });
 });
 
-const peerServer = PeerServer({ port: 9000, path: "/peer" });
+const peerServer = ExpressPeerServer(server, { path: "/peer", debug: true });
 
 const PORT = process.env.PORT || 3003;
 console.log(PORT, "PORT", process.env);
+
+app.use("/peerjs", peerServer);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
@@ -215,5 +217,3 @@ const convertOnlineUsersToArray = () => {
 
   return onlineUsersArray;
 };
-
-module.exports = app;
