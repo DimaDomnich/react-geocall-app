@@ -46,12 +46,12 @@ io.on("connection", (socket) => {
   });
 });
 
-const peerServer = ExpressPeerServer(server, { path: "/peer", debug: true });
+const peerServer = ExpressPeerServer(server, { port: 9000, path: "/peer" });
 
 const PORT = process.env.PORT || 3003;
 console.log(PORT, "PORT", process.env);
 
-app.use("/peerjs", peerServer);
+app.use(peerServer);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
