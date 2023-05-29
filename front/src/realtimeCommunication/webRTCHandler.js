@@ -30,7 +30,10 @@ export const connectWithPeerServer = () => {
     port: 9000,
     path: "/peerjs/peer",
   });
-
+  peer.on("error", (err) => {
+    console.log("THE ERR", err);
+  });
+  console.log(peer, "the peer");
   peer.on("open", (id) => {
     console.log("My peer ID is:" + id);
     peerId = id;
