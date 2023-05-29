@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const peerServer = ExpressPeerServer(server, { port: 9000, path: "/peer" });
+const peerServer = ExpressPeerServer(server, { path: "/peer" });
 
 const PORT = process.env.PORT || 3003;
 console.log(PORT, "PORT", process.env);
