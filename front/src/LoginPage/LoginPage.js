@@ -17,15 +17,10 @@ const isUsernameValid = (username) => {
   return username.length > 0 && username.length < 10 && !username.includes(" ");
 };
 
-const locationOptions = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
-  const [locationErrorOccurred, setLocationErrorOccurred] = useState(false);
+  const [locationErrorOccurred] = useState(false);
 
   const myLocation = useSelector((state) => state.map.myLocation);
 
@@ -52,19 +47,8 @@ const LoginPage = () => {
     );
   }, [dispatch]);
 
-  const onError = (error) => {
-    console.log("Error occurred when trying to get location");
-    console.log(error);
-    setLocationErrorOccurred(true);
-  };
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition(
-    //   onSuccess,
-    //   onError,
-    //   locationOptions
-    // );
-
     onSuccess(getFakeLocation());
   }, [onSuccess]);
 

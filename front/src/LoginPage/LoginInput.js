@@ -12,6 +12,7 @@ const LoginInput = (props) => {
       className="l_page_input"
       value={username}
       onChange={handleValueChange}
+      placeholder="Input your name"
     />
   );
 };

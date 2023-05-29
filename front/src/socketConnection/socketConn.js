@@ -11,7 +11,7 @@ let socket = null;
 
 export const connectWithSocketIOServer = () => {
   socket = io("https://react-geocall-app-server.onrender.com");
-  console.log(socket, "SOCKET");
+
   socket.on("connect", () => {
     console.log("connected to socket server");
   });
@@ -52,13 +52,10 @@ export const sendChatMessage = (data) => {
 };
 
 export const createVideoRoom = (data) => {
-  console.log("emitting");
   socket.emit("video-room-create", data);
 };
 
 export const joinVideoRoom = (data) => {
-  console.log("emitting event to join a room");
-  console.log(data);
   socket.emit("video-room-join", data);
 };
 

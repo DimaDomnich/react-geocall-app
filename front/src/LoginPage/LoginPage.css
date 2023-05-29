@@ -19,6 +19,7 @@
 }
 
 .l_page_input {
+    padding-left: 10px;
     width: 300px;
     height: 60px;
     border-radius: 8px;
