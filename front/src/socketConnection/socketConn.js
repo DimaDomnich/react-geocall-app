@@ -11,11 +11,13 @@ let socket = null;
 
 export const connectWithSocketIOServer = () => {
   socket = io("https://react-geocall-app-server.vercel.app:3003");
-
+  console.log(socket, "SOCKET");
   socket.on("connect", () => {
     console.log("connected to socket server");
   });
-
+  socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
+  });
   socket.on("online-users", (usersData) => {
     onlineUsersHandler(socket.id, usersData);
   });

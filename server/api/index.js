@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
 const peerServer = PeerServer({ port: 9000, path: "/peer" });
 
 const PORT = process.env.PORT || 3003;
-
+console.log(PORT, "PORT", process.env);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
@@ -215,3 +215,5 @@ const convertOnlineUsersToArray = () => {
 
   return onlineUsersArray;
 };
+
+module.exports = app;

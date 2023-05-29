@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setMyLocation } from "../MapPage/mapSlice";
@@ -43,14 +43,14 @@ const LoginPage = () => {
     navigate("/map");
   };
 
-  const onSuccess = (position) => {
+  const onSuccess = useCallback((position) => {
     dispatch(
       setMyLocation({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       })
     );
-  };
+  }, [dispatch]);
 
   const onError = (error) => {
     console.log("Error occurred when trying to get location");
@@ -66,7 +66,7 @@ const LoginPage = () => {
     // );
 
     onSuccess(getFakeLocation());
-  }, []);
+  }, [onSuccess]);
 
   useEffect(() => {
     if (myLocation) {
